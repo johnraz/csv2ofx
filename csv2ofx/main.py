@@ -144,7 +144,8 @@ def run():  # noqa: C901
     source = open(args.source, encoding=args.encoding) if args.source else stdin
 
     try:
-        records = read_csv(source, has_header=cont.has_header)
+        records = read_csv(source, has_header=cont.has_header,
+                           delimiter=cont.delimiter)
         groups = cont.gen_groups(records, args.chunksize)
         trxns = cont.gen_trxns(groups, args.collapse)
         cleaned_trxns = cont.clean_trxns(trxns)
